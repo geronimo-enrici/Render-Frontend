@@ -1,0 +1,18 @@
+<header class="navbar">
+  <div class="logo">Proyecto<span>Render</span></div>
+  <nav>
+    <a routerLink="/main">Inicio</a>
+    <a routerLink="/catalogo">Catálogo</a>
+    
+    <a *ngIf="usuarioActual" routerLink="/misrenders">Mis Renders</a>
+    
+    <ng-container *ngIf="usuarioActual; else noLogueado">
+      <span class="user-greeting">Hola, {{ usuarioActual.nombre }}</span>
+      <a class="btn-login" (click)="cerrarSesion()" style="cursor: pointer;">Salir</a>
+    </ng-container>
+
+    <ng-template #noLogueado>
+      <a routerLink="/login" class="btn-login">Ingresar</a>
+    </ng-template>
+  </nav>
+</header>

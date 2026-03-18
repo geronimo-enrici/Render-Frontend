@@ -1,0 +1,78 @@
+<div class="catalog-wrapper">
+  
+  <header class="catalog-header">
+    <span class="eyebrow">COLECCIÓN EXCLUSIVA</span>
+    <h1>Arquitectura de Autor</h1>
+    <p>Diseños vanguardistas listos para descargar y construir. Filtrados por estilo y complejidad.</p>
+    
+    <div class="filters-container">
+      <div class="filters">
+        <button [class.active]="filtroActivo === 'Todos'" (click)="setFiltro('Todos')">Todos</button>
+        <button [class.active]="filtroActivo === 'Minimalista'" (click)="setFiltro('Minimalista')">Minimalista</button>
+        <button [class.active]="filtroActivo === 'Contemporáneo'" (click)="setFiltro('Contemporáneo')">Contemporáneo</button>
+        <button [class.active]="filtroActivo === 'Industrial'" (click)="setFiltro('Industrial')">Industrial</button>
+      </div>
+    </div>
+  </header>
+
+  <div *ngIf="cargando" class="loading-state">
+    <div class="spinner"></div>
+    <p>Sincronizando con la base de datos de arquitectura...</p>
+  </div>
+
+  <div class="catalog-grid" *ngIf="!cargando">
+    
+    <div class="project-card" *ngFor="let casa of proyectosFiltrados" [class.premium-card]="casa.esPremium">
+      
+      <div class="card-image-wrapper">
+        <img [src]="casa.imagenUrl" [alt]="casa.nombre" class="project-img">
+        <div class="card-overlay">
+          <span class="badge premium" *ngIf="casa.esPremium">👑 PREMIUM</span>
+          <span class="badge style">{{ casa.estilo }}</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="title-price">
+          <h2>{{ casa.nombre }}</h2>
+          <span class="price">${{ casa.precio | number:'1.0-0' }} <small>USD</small></span>
+        </div>
+        
+        <p class="desc">{{ casa.descripcion }}</p>
+        
+        <div class="specs-grid">
+          <div class="spec">
+            <span class="icon">📐</span>
+            <span class="val">{{ casa.metrosCuadrados }}m²</span>
+          </div>
+          <div class="spec">
+            <span class="icon">🛏️</span>
+            <span class="val">{{ casa.habitaciones }}</span>
+          </div>
+          <div class="spec">
+            <span class="icon">🚿</span>
+            <span class="val">{{ casa.banos }}</span>
+          </div>
+          <div class="spec">
+            <span class="icon">🏢</span>
+            <span class="val">{{ casa.niveles }} Niv</span>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <button class="btn-primary" (click)="explorarModelo(casa)">
+                Explorar modelo 3D
+            </button>
+          <button class="btn-icon" title="Añadir a favoritos">❤</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="!cargando && proyectosFiltrados.length === 0" class="empty-results">
+    <p>No se encontraron proyectos en la categoría {{ filtroActivo }}.</p>
+    <button (click)="setFiltro('Todos')">Ver todos los diseños</button>
+  </div>
+
+</div>

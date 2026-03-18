@@ -1,0 +1,22 @@
+<div class="renders-list">
+  @for (proyecto of misProyectos; track proyecto.id) {
+    <div class="render-item">
+      <div class="item-thumb empty">Img</div>
+      <div class="item-info">
+        <h3>{{ proyecto.proyecto }}</h3>
+        <p>ID del Render: {{ proyecto.id }}</p>
+      </div>
+      <div class="item-status" 
+           [class.status-finalizado]="proyecto.estado === 'Finalizado'"
+           [class.status-proceso]="proyecto.estado !== 'Finalizado'">
+        {{ proyecto.estado }}
+      </div>
+      <div class="item-actions">
+        <button class="btn-icon">👁️</button>
+        <button class="btn-icon">⬇️</button>
+      </div>
+    </div>
+  } @empty {
+    <p>No tienes proyectos todavía. ¡Crea el primero!</p>
+  }
+</div>

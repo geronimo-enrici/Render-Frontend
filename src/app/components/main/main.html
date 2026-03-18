@@ -1,0 +1,187 @@
+<div class="landing-wrapper">
+
+  <section class="hero-minimal">
+    <div class="hero-text">
+      <span class="eyebrow">ESTUDIO DE ARQUITECTURA DIGITAL</span>
+      <h1>Tu futura casa,<br>diseñada hoy.</h1>
+      <p>Colección exclusiva de residencias premium pre-diseñadas.<br>Explora, enamórate y adquiere los planos listos para construir.</p>
+      <button class="btn-outline" routerLink="/catalogo">VER COLECCIÓN</button>
+    </div>
+  </section>
+
+  <section class="about-minimal">
+    <div class="about-grid">
+      <div class="about-image">
+        <div class="img-placeholder">Interior Minimalista</div>
+      </div>
+      <div class="about-content">
+        <h2>No vendemos planos.<br>Entregamos una visión.</h2>
+        <p>
+          Sabemos que el proceso de diseño desde cero puede ser agotador y costoso. 
+          Por eso, nuestros arquitectos han creado un catálogo de "Casas de Autor". 
+          Diseños de vanguardia, optimizados para la luz natural, la eficiencia energética y el lujo moderno.
+        </p>
+        <p>
+          Adquiriendo nuestros paquetes de renders y planos, te saltas meses de reuniones y vas directo a la construcción con la certeza absoluta de cómo se verá cada rincón.
+        </p>
+        <div class="stats-mini">
+          <div><strong>+50</strong><br>Diseños Únicos</div>
+          <div><strong>4K</strong><br>Renders Incluidos</div>
+          <div><strong>100%</strong><br>Listos para Construir</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="interactive-showcase">
+    <div class="section-title-center">
+      <h2>Vive la Experiencia</h2>
+      <p>Explora uno de nuestros modelos estrella en detalle antes de adquirirlo.</p>
+    </div>
+
+    <div class="property-explorer-container">
+      
+      <header class="property-header">
+        <div class="header-info">
+          <span class="badge premium">Desarrollo Premium</span>
+          <h1>Casa Luna <span class="subtitle">| Explorador Interactivo</span></h1>
+          <p class="location">📍 Cabo San Lucas, Baja California Sur</p>
+        </div>
+        <div class="header-price">
+          <p class="price-label">Valor Estimado de Construcción</p>
+          <h2>$750,000 <span class="currency">USD</span></h2>
+        </div>
+      </header>
+
+      <div class="interactive-stage">
+        
+        <div class="panel floorplan-panel">
+          <div class="panel-toolbar glass-effect">
+            <span class="toolbar-title">📐 Plano Arquitectónico</span>
+            <div class="floor-selector">
+              <button class="active" (click)="irACuarto('general')">Vista Total</button>
+              <button>Nivel 2</button>
+              <button>Azotea</button>
+            </div>
+          </div>
+          <div class="panel-content">
+            <div class="image-placeholder schematic-bg"></div>
+            
+            <div class="hotspot pulse" style="top: 30%; left: 35%;" (click)="irACuarto('cocina')">
+              <span class="tooltip">Cocina Gourmet</span>
+            </div>
+            <div class="hotspot pulse" style="top: 45%; left: 60%;" (click)="irACuarto('sala')">
+              <span class="tooltip">Sala de Estar Doble Altura</span>
+            </div>
+            <div class="hotspot pulse" style="top: 65%; left: 80%;" (click)="irACuarto('terraza')">
+              <span class="tooltip">Terraza y Piscina Infinity</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="panel render-panel">
+          <div class="panel-toolbar glass-effect">
+            <span class="toolbar-title">🧊 Recorrido 3D Interactivo</span>
+            <div class="view-tools">
+              <button class="tool-btn">VR</button>
+              <button class="tool-btn" (click)="toggleFullscreen()">⛶</button>
+            </div>
+          </div>
+
+          <div class="panel-content">
+            <model-viewer 
+                #viewer
+                src="assets/casa1.glb"
+                alt="Render 3D de Casa Luna"
+                camera-controls 
+                auto-rotate
+                shadow-intensity="1"
+                environment-image="neutral"
+                exposure="1"
+                [attr.camera-target]="camTarget" 
+                [attr.camera-orbit]="camOrbit"
+                interpolation-decay="200"
+                style="width: 100%; height: 100%; background-color: #08080a;">
+            </model-viewer>
+
+            <div class="render-controls glass-effect">
+              <div class="control-group">
+                <span class="icon">🖱️</span> Arrastra para girar | Scroll para Zoom
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div> 
+
+      <div class="stats-ribbon">
+        <div class="stat-card">
+          <span class="stat-icon">📏</span>
+          <div class="stat-data">
+            <h3>360 <span class="unit">m²</span></h3>
+            <p>Terreno Total</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🛏️</span>
+          <div class="stat-data">
+            <h3>4</h3>
+            <p>Recámaras</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🚿</span>
+          <div class="stat-data">
+            <h3>4.5</h3>
+            <p>Baños</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🏢</span>
+          <div class="stat-data">
+            <h3>2</h3>
+            <p>Niveles</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="description-section">
+          <h2>Sobre el Proyecto</h2>
+          <p class="main-desc">
+            La Casa Luna es una joya arquitectónica de lujo con vistas panorámicas al océano. Diseñada con un enfoque de planta abierta, integra la naturaleza exterior con la comodidad interior utilizando materiales orgánicos de primera calidad.
+          </p>
+          <ul class="amenities-list">
+            <li>✓ Sistema inteligente de domótica integrado</li>
+            <li>✓ Paneles solares invisibles de alta eficiencia</li>
+            <li>✓ Piscina climatizada con borde infinito</li>
+            <li>✓ Estacionamiento subterráneo para 3 vehículos</li>
+          </ul>
+        </div>
+
+        <div class="materials-card">
+          <h2>Catálogo de Acabados</h2>
+          <p>Selecciona los materiales aplicados en el render 3D:</p>
+          <div class="materials-gallery">
+            <div class="material-item">
+              <div class="color-swatch" style="background: linear-gradient(135deg, #f5f5f5, #e0e0e0);"></div>
+              <span>Mármol Carrara</span>
+            </div>
+            <div class="material-item">
+              <div class="color-swatch" style="background: linear-gradient(135deg, #d4a373, #a98467);"></div>
+              <span>Roble Europeo</span>
+            </div>
+            <div class="material-item">
+              <div class="color-swatch" style="background: linear-gradient(135deg, #495057, #212529);"></div>
+              <span>Acero Pavonado</span>
+            </div>
+          </div>
+          <button class="btn-cta">SOLICITAR COTIZACIÓN FORMAL</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
